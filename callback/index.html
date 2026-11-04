@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><title>TikTok OAuth callback</title>
+<meta name="robots" content="noindex"></head>
+<body style="font-family:-apple-system,sans-serif;padding:40px">
+<h2>TikTok 授權完成</h2>
+<p id="msg">讀取中…</p>
+<script>
+const p = new URLSearchParams(location.search);
+const m = document.getElementById('msg');
+if (p.get('code')) { m.textContent = '已取得授權碼，可以關閉此頁，回到 Hermes。'; document.title='TikTok OAuth OK'; }
+else if (p.get('error')) { m.textContent = '授權失敗：' + p.get('error') + ' ' + (p.get('error_description')||''); }
+else { m.textContent = '沒有收到授權參數。'; }
+</script>
+</body></html>
